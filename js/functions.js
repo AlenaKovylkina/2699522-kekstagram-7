@@ -1,7 +1,4 @@
 const checkLength = (string, maxLength) => string.length <= maxLength;
-console.log(checkLength('проверяемая строка', 20)); // true
-console.log(checkLength('проверяемая строка', 18)); // true
-console.log(checkLength('проверяемая строка', 10)); // false
 
 const isPalindrome = (string) => {
   const normalString = string.replaceAll(' ', '').toLowerCase();
@@ -11,10 +8,6 @@ const isPalindrome = (string) => {
   }
   return normalString === reverseString;
 };
-console.log(isPalindrome('топот')); // true
-console.log(isPalindrome('ДовОд')); // true
-console.log(isPalindrome('Кекс'));  // false
-console.log(isPalindrome('Лёша на полке клопа нашёл ')); // true
 
 const extractNumbers = (string) => {
   const normalString = string.toString();
@@ -27,11 +20,13 @@ const extractNumbers = (string) => {
   }
   return numbers === '' ? NaN : parseInt(numbers, 10);
 };
-console.log(extractNumbers('2023 год'));            // 2023
-console.log(extractNumbers('ECMAScript 2022'));     // 2022
-console.log(extractNumbers('1 кефир, 0.5 батона')); // 105
-console.log(extractNumbers('агент 007'));           // 7
-console.log(extractNumbers('а я томат'));           // NaN
-console.log(extractNumbers(2023)); // 2023
-console.log(extractNumbers(-1));   // 1
-console.log(extractNumbers(1.5));  // 15
+
+const isMeetingInWorkday = (dayStart, dayEnd, meetingStart, duration) => {
+  const startParts = dayStart.split(':');
+  const endParts = dayEnd.split(':');
+  const meetingParts = meetingStart.split(':');
+  const startMinutes = Number(startParts[0]) * 60 + Number(startParts[1]);
+  const endMinutes = Number(endParts[0]) * 60 + Number(endParts[1]);
+  const meetingMinutes = Number(meetingParts[0]) * 60 + Number(meetingParts[1]);
+  return meetingMinutes >= startMinutes && meetingMinutes + duration <= endMinutes;
+};
